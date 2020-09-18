@@ -68,14 +68,17 @@ namespace CafeApp.Services
 
         public void ClearRecords()
         {
-            database.Table<Record>().Delete(x => x != null);
+            database.DropTable<Record>();
+            database.CreateTable<Record>();
         }
 
 
         public void ClearData()
         {
-            database.Table<Avtomat>().Delete(x => x != null);
-            database.Table<Ingredient>().Delete(x => x != null);
+            database.DropTable<Avtomat>();
+            database.CreateTable<Avtomat>();
+            database.DropTable<Ingredient>();
+            database.CreateTable<Ingredient>();
         }
 
         public void DropTables()

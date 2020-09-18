@@ -45,9 +45,9 @@ namespace CafeApp.Services
             return await Task.FromResult(records.FirstOrDefault(s => s.Id == id));
         }
 
-        public Task<IEnumerable<Record>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Record>> GetItemsAsync(bool forceRefresh = false)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(records);
         }
     }
 }

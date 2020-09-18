@@ -6,11 +6,41 @@
              mc:Ignorable="d"
              x:Class="CafeApp.Views.IngredientsPage"
              Title="{Binding Title}">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding CreateIngredientListCommand}">
+        <CollectionView x:Name="IngredientsCollectionView"
+                        ItemsSource="{Binding ReportIngredientCounts}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="30"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding Ingredient.Value}" 
+                               d:Text="{Binding .}"
+                               LineBreakMode="NoWrap" 
+                               Style="{DynamicResource ListItemTextStyle}" 
+                               FontSize="24"
+                               Grid.Column="0"
+                               VerticalOptions="Center"
+                               Margin="10,0,0,0"/>
+                        <Label Text="{Binding Count}" 
+                               d:Text="{Binding .}"
+                               LineBreakMode="NoWrap" 
+                               Style="{DynamicResource ListItemTextStyle}" 
+                               FontSize="26"
+                               Grid.Column="1" HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               />
+                        <Grid.GestureRecognizers>
+                            <!--<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"></TapGestureRecognizer>-->
+
+                        </Grid.GestureRecognizers>
+                    </Grid>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+
 </ContentPage>

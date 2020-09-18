@@ -12,11 +12,19 @@ namespace CafeApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class IngredientsPage : ContentPage
     {
-        private IngredientsViewModel viewModel;
+        private IngredientCountViewModel viewModel;
         public IngredientsPage()
         {
             InitializeComponent();
-            BindingContext = viewModel = new IngredientsViewModel();
+            BindingContext = viewModel = new IngredientCountViewModel();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (viewModel.ReportIngredientCounts.Count == 0)
+                viewModel.IsBusy = true;
         }
     }
 }

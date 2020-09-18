@@ -14,6 +14,7 @@ namespace CafeApp.Models
         public string IngredientId { get; set; }
         public int Count { get; set; }
         public string Date { get; set; }
-
+        public bool IsSend { get; set; }
+        public bool IsBlock { get; set; }
     }
 }

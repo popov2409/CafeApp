@@ -13,6 +13,7 @@ namespace CafeApp.Views
         public MainPage()
         {
             InitializeComponent();
+            //App.Database.ClearRecords();
         }
     }
 }
