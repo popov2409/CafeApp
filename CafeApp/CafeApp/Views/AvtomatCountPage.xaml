@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CafeApp.Views.AvtomatCountPage"
+             Title="{Binding Title}" >
+    <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding CreateListCommand}">
+        <CollectionView x:Name="AvtomatCollectionView"
+                        ItemsSource="{Binding ReportAvtomatCountList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="30"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding Avtomat.Value}" 
+                               d:Text="{Binding .}"
+                               LineBreakMode="NoWrap" 
+                               Style="{DynamicResource ListItemTextStyle}" 
+                               FontSize="24"
+                               Grid.Column="0"
+                               VerticalOptions="Center"
+                               Margin="10,0,0,0"/>
+                        <Label Text="{Binding Count}" 
+                               d:Text="{Binding .}"
+                               LineBreakMode="NoWrap" 
+                               Style="{DynamicResource ListItemTextStyle}" 
+                               FontSize="26"
+                               Grid.Column="1" HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                        />
+                        <Grid.GestureRecognizers>
+                            <!--<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"></TapGestureRecognizer>-->
+
+                        </Grid.GestureRecognizers>
+                    </Grid>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+
+</ContentPage>

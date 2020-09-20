@@ -15,11 +15,15 @@ namespace CafeApp.ViewModels
     {
         public ObservableCollection<IngredientCount> IngredientCounts { get; set; }
         public ObservableCollection<IngredientCount> ReportIngredientCounts { get; set; }
-        public Avtomat Avtomat { get; set; }
 
         public Command CreateListCommand { get; set; }
 
         public Command CreateIngredientListCommand { get; set; }
+
+        /// <summary>
+        /// Контсруктор для создания списка ингредиентов при добавлении записи о внесении в автомат
+        /// </summary>
+        /// <param name="avtomat"></param>
         public IngredientCountViewModel(Avtomat avtomat)
         {
             Title = avtomat.Value;
@@ -46,6 +50,10 @@ namespace CafeApp.ViewModels
             });
         }
 
+        /// <summary>
+        /// Срздание нулевого списка ингредиентов при выбореавтомата для добавления в базу данных
+        /// </summary>
+        /// <returns></returns>
         async Task ExecuteCreateCommand()
         {
             IsBusy = true;
@@ -69,7 +77,9 @@ namespace CafeApp.ViewModels
         }
 
 
-
+        /// <summary>
+        /// Конструктор для формирования списка ежедневного отчета
+        /// </summary>
         public IngredientCountViewModel()
         {
             Title = "Ингредиенты";
@@ -84,10 +94,11 @@ namespace CafeApp.ViewModels
             {
                 ReportIngredientCounts.Clear();
                 var ingredients = await IngredientStore.GetItemsAsync(true);
-                var records = await RecordStore.GetItemsAsync(true);
+                var records = (await RecordStore.GetItemsAsync(true)).Where(c=>DateTime.Parse(c.Date).DayOfYear==DateTime.Now.DayOfYear);
                 foreach (Ingredient ingredient in ingredients)
                 {
                     var item = new IngredientCount(ingredient);
+                    item.Count = records.Where(c => c.IngredientId == ingredient.Id).Sum(c => c.Count);
                     ReportIngredientCounts.Add(item);
                 }
             }

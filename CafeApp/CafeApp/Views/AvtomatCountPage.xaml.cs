@@ -10,20 +10,21 @@ using Xamarin.Forms.Xaml;
 namespace CafeApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class IngredientsPage : ContentPage
+    public partial class AvtomatCountPage : ContentPage
     {
-        private IngredientCountViewModel viewModel;
-        public IngredientsPage()
+        private AvtomatCountViewModel viewModel;
+        public AvtomatCountPage()
         {
             InitializeComponent();
-            BindingContext = viewModel = new IngredientCountViewModel();
+            var ing = App.Database.GetIngridients().ToList()[0];
+            BindingContext = viewModel = new AvtomatCountViewModel(ing);
+
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            BindingContext = viewModel = new IngredientCountViewModel();
-            if (viewModel.ReportIngredientCounts.Count == 0)
+            if (viewModel.ReportAvtomatCountList.Count == 0)
                 viewModel.IsBusy = true;
         }
     }
