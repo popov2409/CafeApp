@@ -6,12 +6,8 @@ namespace CafeApp.Models
 {
     public class AvtomatCount
     {
-        public Avtomat Avtomat { get; set; }
+        public string Id { get; set; }
+        public string Avtomat { get; set; }
         public int Count { get; set; }
-        public AvtomatCount(Avtomat avtomat)
-        {
-            Avtomat = avtomat;
-            Count = 0;
-        }
     }
 }

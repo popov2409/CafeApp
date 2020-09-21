@@ -9,6 +9,7 @@ using CafeApp.Models;
 using CafeApp.Views;
 using Xamarin.Forms;
 
+
 namespace CafeApp.ViewModels
 {
     public class AvtomatCountViewModel:BaseViewModel
@@ -21,10 +22,11 @@ namespace CafeApp.ViewModels
             Title = ingredient.Value;
             ReportAvtomatCountList=new ObservableCollection<AvtomatCount>();
             CreateListCommand=new Command(async()=>await ExecuteCreateListCommand(ingredient));
-            MessagingCenter.Subscribe<AvtomatCountPage, Record>(this, "DelRecord", async (obj, record) =>
+            MessagingCenter.Subscribe<AvtomatCountPage, string>(this, "DelRecord", async (obj, record) =>
             {
-                await RecordStore.DeleteItemAsync(record.Id);
-                CreateListCommand = new Command(async () => await ExecuteCreateListCommand(ingredient));
+                var rec = ReportAvtomatCountList.FirstOrDefault(c => c.Id == record);
+                ReportAvtomatCountList.Remove(rec);
+                await RecordStore.DeleteItemAsync(record);
             });
         }
 
@@ -37,13 +39,14 @@ namespace CafeApp.ViewModels
                 var avtomats = await AvtomatStore.GetItemsAsync(true);
                 var records = (await RecordStore.GetItemsAsync(true)).Where(c =>
                     DateTime.Parse(c.Date).DayOfYear == DateTime.Now.DayOfYear && c.IngredientId == ingredient.Id);
+
                 foreach (Avtomat avtomat in avtomats.OrderBy(c=>c.Value))
                 {
                     var rec = records.Where(c => c.AvtomatId == avtomat.Id);
                     if(rec.Count()==0) continue;
                     foreach (Record record in rec)
                     {
-                        ReportAvtomatCountList.Add(new AvtomatCount(avtomat) {Count = record.Count});
+                        ReportAvtomatCountList.Add(new AvtomatCount {Id = record.Id,Count = record.Count,Avtomat = avtomat.Value});
                     }
 
                 }
@@ -56,7 +59,7 @@ namespace CafeApp.ViewModels
             {
                 IsBusy = false;
             }
-
+            
         }
 
     }

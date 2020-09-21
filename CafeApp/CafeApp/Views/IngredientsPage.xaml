@@ -33,7 +33,7 @@
                                VerticalOptions="Center"
                                />
                         <Grid.GestureRecognizers>
-                            <!--<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"></TapGestureRecognizer>-->
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"></TapGestureRecognizer>
 
                         </Grid.GestureRecognizers>
                     </Grid>

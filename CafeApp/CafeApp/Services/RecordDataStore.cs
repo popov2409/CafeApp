@@ -35,6 +35,7 @@ namespace CafeApp.Services
         public async Task<bool> DeleteItemAsync(string id)
         {
             var oldItem = records.FirstOrDefault(c => c.Id == id);
+            if (oldItem == null) return true;
             records.Remove(oldItem);
             App.Database.DeleteItem(oldItem);
             return await Task.FromResult(true);

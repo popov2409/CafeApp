@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CafeApp.Android", "CafeApp\CafeApp.Android\CafeApp.Android.csproj", "{75D2A4EC-D3F2-4E34-A22F-37EECD6C1088}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CafeApp", "CafeApp\CafeApp\CafeApp.csproj", "{9F89DCFB-4A2A-4DD3-A961-D46B1243C4DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CafeApp", "CafeApp\CafeApp\CafeApp.csproj", "{9F89DCFB-4A2A-4DD3-A961-D46B1243C4DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

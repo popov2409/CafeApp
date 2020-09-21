@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CafeApp.Models;
 using CafeApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -25,6 +26,13 @@ namespace CafeApp.Views
             BindingContext = viewModel = new IngredientCountViewModel();
             if (viewModel.ReportIngredientCounts.Count == 0)
                 viewModel.IsBusy = true;
+        }
+
+        private async void OnItemSelected(object sender, EventArgs e)
+        {
+            var layout = (BindableObject)sender;
+            var ingredient = (IngredientCount)layout.BindingContext;
+            await Navigation.PushAsync(new AvtomatCountPage(new AvtomatCountViewModel(ingredient.Ingredient)));
         }
     }
 }

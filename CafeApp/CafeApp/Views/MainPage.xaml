@@ -9,35 +9,14 @@
 
     <TabbedPage.Children>
         <NavigationPage Title="Автоматы">
-            <NavigationPage.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="iOS" Value="tab_feed.png"/>
-                </OnPlatform>
-            </NavigationPage.Icon>
             <x:Arguments>
                 <views:AvtomatsPage />
             </x:Arguments>
         </NavigationPage>
         
         <NavigationPage Title="Ингредиенты">
-            <NavigationPage.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="iOS" Value="tab_about.png"/>
-                </OnPlatform>
-            </NavigationPage.Icon>
             <x:Arguments>
                 <views:IngredientsPage />
-            </x:Arguments>
-        </NavigationPage>
-
-        <NavigationPage Title="Тест">
-            <NavigationPage.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="iOS" Value="tab_about.png"/>
-                </OnPlatform>
-            </NavigationPage.Icon>
-            <x:Arguments>
-                <views:AvtomatCountPage />
             </x:Arguments>
         </NavigationPage>
     </TabbedPage.Children>

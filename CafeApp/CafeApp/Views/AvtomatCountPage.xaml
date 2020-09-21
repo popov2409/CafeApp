@@ -15,8 +15,9 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="30"/>
                         </Grid.ColumnDefinitions>
-                        <Label Text="{Binding Avtomat.Value}" 
+                        <Label Text="{Binding Avtomat}" 
                                d:Text="{Binding .}"
                                LineBreakMode="NoWrap" 
                                Style="{DynamicResource ListItemTextStyle}" 
@@ -31,7 +32,13 @@
                                FontSize="26"
                                Grid.Column="1" HorizontalOptions="Center"
                                VerticalOptions="Center"
+                               Margin="0,0,10,0"
                         />
+                        <Image Source="delete" Grid.Column="2" Margin="3" Opacity="0.5" VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Remove_Record"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
                         <Grid.GestureRecognizers>
                             <!--<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"></TapGestureRecognizer>-->
 
