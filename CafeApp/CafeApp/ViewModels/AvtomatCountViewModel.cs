@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CafeApp.Models;
+using CafeApp.Views;
 using Xamarin.Forms;
 
 namespace CafeApp.ViewModels
@@ -20,6 +21,11 @@ namespace CafeApp.ViewModels
             Title = ingredient.Value;
             ReportAvtomatCountList=new ObservableCollection<AvtomatCount>();
             CreateListCommand=new Command(async()=>await ExecuteCreateListCommand(ingredient));
+            MessagingCenter.Subscribe<AvtomatCountPage, Record>(this, "DelRecord", async (obj, record) =>
+            {
+                await RecordStore.DeleteItemAsync(record.Id);
+                CreateListCommand = new Command(async () => await ExecuteCreateListCommand(ingredient));
+            });
         }
 
         async Task ExecuteCreateListCommand(Ingredient ingredient)
