@@ -1,7 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
+using CafeApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
 
 namespace CafeApp.Views
 {
@@ -10,9 +12,11 @@ namespace CafeApp.Views
     [DesignTimeVisible(false)]
     public partial class MainPage : TabbedPage
     {
+        private ReportViewModel report;
         public MainPage()
         {
             InitializeComponent();
+            
             //App.Database.ClearRecords();
         }
     }

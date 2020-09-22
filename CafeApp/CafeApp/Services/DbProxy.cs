@@ -120,16 +120,12 @@ namespace CafeApp.Services
     }
 
 }
-/*Сохранение пользователя
- Это можно сделать также с помощью Properties Dictionary
-
-для хранения данных:
-
-Application.Current.Properties["id"] = someClass.ID;
-для получения данных:
-
-if (Application.Current.Properties.ContainsKey("id"))
-{
-var id = Application.Current.Properties["id"] as int;
-// do something with id
-}*/
+//Сохранение пользователя
+// using Xamarin.Essentials;
+            //Preferences.Set("user_id", Guid.NewGuid().ToString());
+            //Preferences.Set("user_name", "Попов Т.А.");
+            // var id = Preferences.Get("user_id", "default_value");
+            //var name = Preferences.Get("user_name", "default_value");
+            //bool hasKey = Preferences.ContainsKey("my_key");
+            //Preferences.Remove("my_key");
+            //Preferences.Clear();
