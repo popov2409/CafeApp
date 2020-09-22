@@ -40,5 +40,19 @@ namespace CafeApp.Services
         {
             return await Task.FromResult(avtomats);
         }
+
+        //GetSearchResults
+        public async Task<IEnumerable<Avtomat>> GetSearchResults(string query)
+        {
+            if (query == null)
+            {
+                return await Task.FromResult(avtomats);
+            }
+            else
+            {
+                var res = avtomats.Where(c => c.Value.ToLower().Contains(query.ToLower())).ToList();
+                return await Task.FromResult(res);
+            }
+        }
     }
 }

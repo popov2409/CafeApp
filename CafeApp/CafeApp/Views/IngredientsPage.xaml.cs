@@ -32,6 +32,7 @@ namespace CafeApp.Views
         {
             var layout = (BindableObject)sender;
             var ingredient = (IngredientCount)layout.BindingContext;
+            if(ingredient.Count==0) return;
             await Navigation.PushAsync(new AvtomatCountPage(new AvtomatCountViewModel(ingredient.Ingredient)));
         }
     }

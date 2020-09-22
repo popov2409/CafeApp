@@ -36,5 +36,10 @@ namespace CafeApp.Views
             if (viewModel.Avtomats.Count == 0)
                 viewModel.IsBusy = true;
         }
+
+        private void Seacrh_Items(object sender, TextChangedEventArgs e)
+        {
+            MessagingCenter.Send(this, "SearchItems", searchBar.Text);
+        }
     }
 }

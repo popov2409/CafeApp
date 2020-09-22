@@ -50,5 +50,10 @@ namespace CafeApp.Services
         {
             return await Task.FromResult(records);
         }
+
+        public Task<IEnumerable<Record>> GetSearchResults(string query)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
