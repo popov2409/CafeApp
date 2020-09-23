@@ -14,7 +14,7 @@
                         ItemsSource="{Binding IngredientCounts}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="5">
+                    <Grid >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
@@ -24,15 +24,16 @@
                                d:Text="{Binding .}"
                                LineBreakMode="NoWrap" 
                                Style="{DynamicResource ListItemTextStyle}" 
-                               FontSize="24"
+                               FontSize="20"
                                Grid.Column="0"
-                               VerticalOptions="Center"/>
-                        <Stepper Grid.Column="1" x:Name="Stepper" Minimum="0" Maximum="9999" Value="{Binding Path=Count}"/>
+                               VerticalOptions="Center"
+                               Margin="10,0,0,0"/>
+                        <Stepper Grid.Column="1" x:Name="Stepper" Minimum="0" Maximum="9999" Value="{Binding Path=Count}" Margin="-70,0,-35,-5" ScaleX="0.5" ScaleY="0.8" HorizontalOptions="Center" VerticalOptions="Center"/>
                         <Label Text="{Binding Source={x:Reference Stepper}, Path=Value}" 
                                d:Text="{Binding .}"
                                LineBreakMode="NoWrap" 
                                Style="{DynamicResource ListItemTextStyle}" 
-                               FontSize="26"
+                               FontSize="22"
                                Grid.Column="2" HorizontalOptions="Center"
                                VerticalOptions="Center"/>
                         <Grid.GestureRecognizers>

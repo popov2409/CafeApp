@@ -32,7 +32,6 @@ namespace CafeApp
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             DependencyService.Register<AvtomatDataStore>();
             DependencyService.Register<IngredientDataStore>();
             DependencyService.Register<RecordDataStore>();

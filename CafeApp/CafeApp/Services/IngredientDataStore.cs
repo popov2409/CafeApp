@@ -18,7 +18,9 @@ namespace CafeApp.Services
 
         public Task<bool> AddItemAsync(Ingredient item)
         {
-            throw new NotImplementedException();
+            ingredients.Add(item);
+            App.Database.SaveItem(item);
+            return Task.FromResult(true);
         }
 
         public Task<bool> UpdateItemAsync(Ingredient item)
@@ -48,6 +50,7 @@ namespace CafeApp.Services
 
         public async Task<bool> ClearData()
         {
+            ingredients.Clear();
             return await Task.FromResult(App.Database.ClearIngredients());
         }
     }

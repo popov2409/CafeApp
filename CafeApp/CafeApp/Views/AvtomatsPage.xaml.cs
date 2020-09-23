@@ -46,5 +46,23 @@ namespace CafeApp.Views
         {
             await Navigation.PushModalAsync(new NavigationPage(new ReporterPage()));
         }
+
+        private async void Import_Data(object sender, EventArgs e)
+        {
+            if (!(await DisplayAlert("", "Импортировать данные?", "Да", "Нет"))) return;
+            ImportDataViewModel importViewModel=new ImportDataViewModel();
+            if(await importViewModel.Import())
+            {
+                await DisplayAlert("Успех", "Данные успешно добавлены!", "Ok");
+                BindingContext = viewModel = new AvtomatsViewModel();
+                OnAppearing();
+            }
+            else
+            {
+                await DisplayAlert("Ошибка", "Не найден файл с данными!", "Ok");
+            }
+
+
+        }
     }
 }

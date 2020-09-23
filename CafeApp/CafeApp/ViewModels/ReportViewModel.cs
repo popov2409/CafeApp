@@ -22,12 +22,14 @@ namespace CafeApp.ViewModels
                 Id = Preferences.Get("user_id", "default_value"),
                 Name = Preferences.Get("user_name", "default_value")
             };
-            var records = await RecordStore.GetItemsAsync(true);
+            var records =  (await RecordStore.GetItemsAsync(true)).Where(c => DateTime.Parse(c.Date) >= startDate && DateTime.Parse(c.Date) <= endDate).ToList();
             string data=JsonConvert.SerializeObject(user);
-            foreach (Record record in records.Where(c=>DateTime.Parse(c.Date)>=startDate&& DateTime.Parse(c.Date) <= endDate))
+
+            foreach (Record record in records)
             {
                 data+="#"+(JsonConvert.SerializeObject(record));
-
+                record.IsSend = true;
+                await RecordStore.UpdateItemAsync(record);
             }
             await Reporter.SendReport(data);
         }

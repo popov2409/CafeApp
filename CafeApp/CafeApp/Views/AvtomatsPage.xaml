@@ -9,10 +9,8 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text ="Отправить отчет"  
                      Priority="0" Order="Secondary" Clicked="Send_Report" />
-        <!--<ToolbarItem Text ="Item 2"  
-              Priority="1" Order="Primary" />-->
         <ToolbarItem Text ="Импорт данных"  
-                     Priority="1" Order="Secondary" />
+                     Priority="1" Order="Secondary" Clicked="Import_Data" />
     </ContentPage.ToolbarItems>
     <Grid>
         <Grid.RowDefinitions>
@@ -28,16 +26,16 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="40"/>
 
                             </Grid.ColumnDefinitions>
                             <Label Text="{Binding Value}" 
                                    d:Text="{Binding .}"
                                    LineBreakMode="NoWrap" 
                                    Style="{DynamicResource ListItemTextStyle}" 
-                                   FontSize="22"
-                                   Padding="10"/>
-                            <Image Source="right" Grid.Column="1" Margin="10" Opacity="0.6"></Image>
+                                   FontSize="21"
+                                   Margin="5,0,0,0"/>
+                            <Image Source="right" Grid.Column="1" Margin="10" Opacity="0.6" VerticalOptions="Center"></Image>
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnAvtomatSelected"></TapGestureRecognizer>
                             </Grid.GestureRecognizers>

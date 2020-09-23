@@ -18,7 +18,9 @@ namespace CafeApp.Services
 
         public Task<bool> AddItemAsync(Avtomat item)
         {
-            throw new NotImplementedException();
+            avtomats.Add(item);
+            App.Database.SaveItem(item);
+            return Task.FromResult(true);
         }
 
         public Task<bool> UpdateItemAsync(Avtomat item)
@@ -38,7 +40,7 @@ namespace CafeApp.Services
 
         public async Task<IEnumerable<Avtomat>> GetItemsAsync(bool forceRefresh = false)
         {
-            return await Task.FromResult(avtomats);
+            return await Task.FromResult(avtomats.OrderBy(c => c.Value));
         }
 
         //GetSearchResults
@@ -50,13 +52,15 @@ namespace CafeApp.Services
             }
             else
             {
-                var res = avtomats.Where(c => c.Value.ToLower().Contains(query.ToLower())).ToList();
+                var res = avtomats.Where(c => c.Value.ToLower().Contains(query.ToLower())).OrderBy(c => c.Value)
+                    .ToList();
                 return await Task.FromResult(res);
             }
         }
 
         public async Task<bool> ClearData()
         {
+            avtomats.Clear();
             return await Task.FromResult(App.Database.ClearAvotamts());
         }
     }
