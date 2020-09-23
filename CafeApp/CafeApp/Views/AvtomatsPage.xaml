@@ -34,8 +34,10 @@
                                    LineBreakMode="NoWrap" 
                                    Style="{DynamicResource ListItemTextStyle}" 
                                    FontSize="21"
-                                   Margin="5,0,0,0"/>
+                                   Margin="5,0,0,0"
+                                   VerticalOptions="Center"/>
                             <Image Source="right" Grid.Column="1" Margin="10" Opacity="0.6" VerticalOptions="Center"></Image>
+                            <BoxView Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="1" BackgroundColor="DimGray" HorizontalOptions="FillAndExpand" VerticalOptions="End"/>
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnAvtomatSelected"></TapGestureRecognizer>
                             </Grid.GestureRecognizers>

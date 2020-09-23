@@ -21,7 +21,7 @@
                                d:Text="{Binding .}"
                                LineBreakMode="NoWrap" 
                                Style="{DynamicResource ListItemTextStyle}" 
-                               FontSize="20"
+                               FontSize="21"
                                Grid.Column="0"
                                VerticalOptions="Center"
                                Margin="10,0,0,0"/>
@@ -39,6 +39,7 @@
                                 <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Remove_Record"></TapGestureRecognizer>
                             </Image.GestureRecognizers>
                         </Image>
+                        <BoxView Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" BackgroundColor="DimGray" HorizontalOptions="FillAndExpand" VerticalOptions="End"/>
                         <Grid.GestureRecognizers>
                             <!--<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"></TapGestureRecognizer>-->
 

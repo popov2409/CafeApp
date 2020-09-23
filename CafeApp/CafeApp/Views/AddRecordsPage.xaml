@@ -24,11 +24,11 @@
                                d:Text="{Binding .}"
                                LineBreakMode="NoWrap" 
                                Style="{DynamicResource ListItemTextStyle}" 
-                               FontSize="20"
+                               FontSize="21"
                                Grid.Column="0"
                                VerticalOptions="Center"
                                Margin="10,0,0,0"/>
-                        <Stepper Grid.Column="1" x:Name="Stepper" Minimum="0" Maximum="9999" Value="{Binding Path=Count}" Margin="-70,0,-35,-5" ScaleX="0.5" ScaleY="0.8" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Stepper Grid.Column="1" x:Name="Stepper" Minimum="0" Maximum="9999" Value="{Binding Path=Count}" Margin="-70,-3,-35,-3" ScaleX="0.5" ScaleY="0.8" HorizontalOptions="Center" VerticalOptions="Center"/>
                         <Label Text="{Binding Source={x:Reference Stepper}, Path=Value}" 
                                d:Text="{Binding .}"
                                LineBreakMode="NoWrap" 
@@ -36,6 +36,7 @@
                                FontSize="22"
                                Grid.Column="2" HorizontalOptions="Center"
                                VerticalOptions="Center"/>
+                        <BoxView Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" BackgroundColor="DimGray" HorizontalOptions="FillAndExpand" VerticalOptions="End"/>
                         <Grid.GestureRecognizers>
                             <!--<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"></TapGestureRecognizer>-->
 
