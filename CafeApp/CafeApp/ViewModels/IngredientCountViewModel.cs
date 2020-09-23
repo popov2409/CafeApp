@@ -94,7 +94,9 @@ namespace CafeApp.ViewModels
             {
                 ReportIngredientCounts.Clear();
                 var ingredients = await IngredientStore.GetItemsAsync(true);
-                var records = (await RecordStore.GetItemsAsync(true)).Where(c=>DateTime.Parse(c.Date).DayOfYear==DateTime.Now.DayOfYear);
+                var records = (await RecordStore.GetItemsAsync(true)).Where(c =>
+                    DateTime.Parse(c.Date).DayOfYear == DateTime.Now.DayOfYear &&
+                    DateTime.Parse(c.Date).Year == DateTime.Now.Year);
                 foreach (Ingredient ingredient in ingredients)
                 {
                     var item = new IngredientCount(ingredient);

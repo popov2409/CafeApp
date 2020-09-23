@@ -9,7 +9,7 @@ namespace CafeApp.Services
 {
     public class Reporter
     {
-        public async Task SendReport(string[] data)
+        public async Task SendReport(string data)
         {
 
             var message = new EmailMessage
@@ -20,7 +20,7 @@ namespace CafeApp.Services
             };
 
             var file = Path.Combine(FileSystem.CacheDirectory, $"report_{DateTime.Now.ToShortDateString().Replace('/', '_')}.txt");
-            File.WriteAllLines(file, data);
+            File.WriteAllText(file, data);
             message.Attachments.Add(new EmailAttachment(file));
             await Email.ComposeAsync(message);
 

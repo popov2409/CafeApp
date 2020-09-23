@@ -41,5 +41,10 @@ namespace CafeApp.Views
         {
             MessagingCenter.Send(this, "SearchItems", searchBar.Text);
         }
+
+        private async void Send_Report(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new ReporterPage()));
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using CafeApp.ViewModels;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,8 +17,14 @@ namespace CafeApp.Views
         public MainPage()
         {
             InitializeComponent();
-            
-            //App.Database.ClearRecords();
+            CreateUser();
+        }
+
+        void CreateUser()
+        {
+            if(Preferences.ContainsKey("user_id")) return;
+            Preferences.Set("user_id", Guid.NewGuid().ToString());
+            Preferences.Set("user_name", "Test");
         }
     }
 }

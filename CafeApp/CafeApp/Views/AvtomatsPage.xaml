@@ -6,12 +6,20 @@
              mc:Ignorable="d"
              x:Class="CafeApp.Views.AvtomatsPage"
              Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text ="Отправить отчет"  
+                     Priority="0" Order="Secondary" Clicked="Send_Report" />
+        <!--<ToolbarItem Text ="Item 2"  
+              Priority="1" Order="Primary" />-->
+        <ToolbarItem Text ="Импорт данных"  
+                     Priority="1" Order="Secondary" />
+    </ContentPage.ToolbarItems>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <SearchBar Grid.Row="0" x:Name="searchBar" TextChanged="Seacrh_Items"></SearchBar>
+        <SearchBar Grid.Row="0" x:Name="searchBar" TextChanged="Seacrh_Items" TextColor="DimGray" CancelButtonColor="DimGray"></SearchBar>
         <RefreshView Grid.Row="1" IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadAvtomatsCommand}">
             <CollectionView x:Name="AvtomatsCollectionView"
                             ItemsSource="{Binding Avtomats}">
