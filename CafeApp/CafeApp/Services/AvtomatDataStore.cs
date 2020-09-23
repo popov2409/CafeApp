@@ -54,5 +54,10 @@ namespace CafeApp.Services
                 return await Task.FromResult(res);
             }
         }
+
+        public async Task<bool> ClearData()
+        {
+            return await Task.FromResult(App.Database.ClearAvotamts());
+        }
     }
 }

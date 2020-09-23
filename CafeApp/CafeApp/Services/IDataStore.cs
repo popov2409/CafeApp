@@ -12,5 +12,7 @@ namespace CafeApp.Services
         Task<T> GetItemAsync(string id);
         Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
         Task<IEnumerable<T>> GetSearchResults(string query);
+        Task<bool> ClearData();
+
     }
 }

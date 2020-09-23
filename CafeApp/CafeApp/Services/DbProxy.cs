@@ -66,19 +66,49 @@ namespace CafeApp.Services
             database.Update(item);
         }
 
-        public void ClearRecords()
+        public bool ClearRecords()
         {
-            database.DropTable<Record>();
-            database.CreateTable<Record>();
+            try
+            {
+                database.DropTable<Record>();
+                database.CreateTable<Record>();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            
         }
 
-
-        public void ClearData()
+        public bool ClearAvotamts()
         {
-            database.DropTable<Avtomat>();
-            database.CreateTable<Avtomat>();
-            database.DropTable<Ingredient>();
-            database.CreateTable<Ingredient>();
+            try
+            {
+                database.DropTable<Avtomat>();
+                database.CreateTable<Avtomat>();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            
+            
+        }
+
+        public bool ClearIngredients()
+        {
+            try
+            {
+                database.DropTable<Ingredient>();
+                database.CreateTable<Ingredient>();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public void DropTables()

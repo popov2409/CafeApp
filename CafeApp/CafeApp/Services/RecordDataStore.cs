@@ -55,5 +55,10 @@ namespace CafeApp.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<bool> ClearData()
+        {
+            return await Task.FromResult(App.Database.ClearRecords());
+        }
     }
 }
