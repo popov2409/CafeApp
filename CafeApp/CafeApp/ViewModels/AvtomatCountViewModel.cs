@@ -38,11 +38,11 @@ namespace CafeApp.ViewModels
                 ReportAvtomatCountList.Clear();
                 var avtomats = await AvtomatStore.GetItemsAsync(true);
                 var records = (await RecordStore.GetItemsAsync(true)).Where(c =>
-                    DateTime.Parse(c.Date).DayOfYear == DateTime.Now.DayOfYear && c.IngredientId == ingredient.Id);
+                    DateTime.Parse(c.Date).DayOfYear == DateTime.Now.DayOfYear && c.Ingredient == ingredient.Id);
 
                 foreach (Avtomat avtomat in avtomats.OrderBy(c=>c.Value))
                 {
-                    var rec = records.Where(c => c.AvtomatId == avtomat.Id);
+                    var rec = records.Where(c => c.Avtomat == avtomat.Id);
                     if(rec.Count()==0) continue;
                     foreach (Record record in rec)
                     {
