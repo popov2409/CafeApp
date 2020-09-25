@@ -14,7 +14,6 @@ namespace CafeApp.ViewModels
     {
 
         public IDataStore<Avtomat> AvtomatStore => DependencyService.Get<IDataStore<Avtomat>>();
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
         public IDataStore<Ingredient> IngredientStore => DependencyService.Get<IDataStore<Ingredient>>();
         public IDataStore<Record> RecordStore => DependencyService.Get<IDataStore<Record>>();
