@@ -17,13 +17,8 @@ namespace CafeApp.ViewModels
 
         public async Task SendReport(DateTime startDate, DateTime endDate)
         {
-            User user = new User()
-            {
-                Id = Preferences.Get("user_id", "default_value"),
-                Name = Preferences.Get("user_name", "default_value")
-            };
             var records =  (await RecordStore.GetItemsAsync(true)).Where(c => DateTime.Parse(c.Date) >= startDate && DateTime.Parse(c.Date) <= endDate).ToList();
-            string data=JsonConvert.SerializeObject(user);
+            string data="";
 
             foreach (Record record in records)
             {

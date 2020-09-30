@@ -29,7 +29,6 @@ namespace CafeApp.ViewModels
         {
             Title = avtomat.Value;
             IngredientCounts=new ObservableCollection<IngredientCount>();
-           // OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://xamarin.com"));
             CreateListCommand =new Command(async ()=>await ExecuteCreateCommand());
             MessagingCenter.Subscribe<AddRecordsPage, ObservableCollection<IngredientCount>>(this, "AddRecords", async (obj, records) =>
             {
