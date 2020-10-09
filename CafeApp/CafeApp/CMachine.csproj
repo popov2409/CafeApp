@@ -3,11 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-    <AssemblyName>CafeApp</AssemblyName>
-    <Authors>PopovTA</Authors>
-    <Company>Home</Company>
-    <Product>CMachine</Product>
-    <PackageId>CMachine</PackageId>
+    <AssemblyName>CMachine</AssemblyName>
+    <RootNamespace>CMachine</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

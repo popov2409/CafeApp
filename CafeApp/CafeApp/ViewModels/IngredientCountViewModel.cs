@@ -49,11 +49,13 @@ namespace CafeApp.ViewModels
                     };
                     await RecordStore.AddItemAsync(rec);
                 }
+
+                MessagingCenter.Unsubscribe<AddRecordsPage, ObservableCollection<IngredientCount>>(this, "AddRecords");
             });
         }
 
         /// <summary>
-        /// Срздание нулевого списка ингредиентов при выбореавтомата для добавления в базу данных
+        /// Срздание нулевого списка ингредиентов при выборе автомата для добавления в базу данных
         /// </summary>
         /// <returns></returns>
         async Task ExecuteCreateCommand()
