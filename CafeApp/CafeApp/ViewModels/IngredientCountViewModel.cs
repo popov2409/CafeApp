@@ -17,7 +17,11 @@ namespace CafeApp.ViewModels
         public ObservableCollection<IngredientCount> IngredientCounts { get; set; }
         public ObservableCollection<IngredientCount> ReportIngredientCounts { get; set; }
 
+        private Avtomat _avtomat;
+
         public Command CreateListCommand { get; set; }
+
+        public Command AddDataCommand { get; set; }
 
         public Command CreateIngredientListCommand { get; set; }
 
@@ -29,30 +33,55 @@ namespace CafeApp.ViewModels
         {
             Title = avtomat.Value;
             IngredientCounts=new ObservableCollection<IngredientCount>();
+            this._avtomat = avtomat;
             CreateListCommand =new Command(async ()=>await ExecuteCreateCommand());
-            MessagingCenter.Subscribe<AddRecordsPage, ObservableCollection<IngredientCount>>(this, "AddRecords", async (obj, records) =>
-            {
-                string userId = Preferences.Get("user_id", "default_value");
-                foreach (IngredientCount ingredientCount in records)
-                {
-                    if(ingredientCount.Count==0) continue;
-                    Record rec=new Record()
-                    {
-                        Count = ingredientCount.Count,
-                        Date = DateTime.Now.ToShortDateString(),
-                        Id = Guid.NewGuid().ToString(),
-                        Ingredient = ingredientCount.Ingredient.Id,
-                        Avtomat = avtomat.Id,
-                        IsSend = false,
-                        IsBlock = false,
-                        User = userId
-                    };
-                    await RecordStore.AddItemAsync(rec);
-                }
+            AddDataCommand=new Command(async ()=>await ExecuteAddDataCommand());
+            //MessagingCenter.Subscribe<AddRecordsPage, ObservableCollection<IngredientCount>>(this, "AddRecords", async (obj, records) =>
+            //{
+            //    string userId = Preferences.Get("user_id", "default_value");
+            //    foreach (IngredientCount ingredientCount in records)
+            //    {
+            //        if(ingredientCount.Count==0) continue;
+            //        Record rec=new Record()
+            //        {
+            //            Count = ingredientCount.Count,
+            //            Date = DateTime.Now.ToShortDateString(),
+            //            Id = Guid.NewGuid().ToString(),
+            //            Ingredient = ingredientCount.Ingredient.Id,
+            //            Avtomat = avtomat.Id,
+            //            IsSend = false,
+            //            IsBlock = false,
+            //            User = userId
+            //        };
+            //        await RecordStore.AddItemAsync(rec);
+            //    }
 
-                MessagingCenter.Unsubscribe<AddRecordsPage, ObservableCollection<IngredientCount>>(this, "AddRecords");
-            });
+            //    MessagingCenter.Unsubscribe<AddRecordsPage, ObservableCollection<IngredientCount>>(this, "AddRecords");
+            //});
         }
+        
+        async Task ExecuteAddDataCommand()
+        {
+            string userId = Preferences.Get("user_id", "default_value");
+            foreach (IngredientCount ingredientCount in IngredientCounts)
+            {
+                if (ingredientCount.Count == 0) continue;
+                Record rec = new Record()
+                {
+                    Count = ingredientCount.Count,
+                    Date = DateTime.Now.ToShortDateString(),
+                    Id = Guid.NewGuid().ToString(),
+                    Ingredient = ingredientCount.Ingredient.Id,
+                    Avtomat = _avtomat.Id,
+                    IsSend = false,
+                    IsBlock = false,
+                    User = userId
+                };
+                await RecordStore.AddItemAsync(rec);
+            }
+
+        }
+
 
         /// <summary>
         /// Срздание нулевого списка ингредиентов при выборе автомата для добавления в базу данных

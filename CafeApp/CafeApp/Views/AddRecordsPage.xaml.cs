@@ -19,7 +19,6 @@ namespace CafeApp.Views
         {
             InitializeComponent();
             BindingContext = this.viewModel = viewModel;
-
         }
        
 
@@ -33,7 +32,7 @@ namespace CafeApp.Views
 
         private async void Add_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddRecords", viewModel.IngredientCounts);
+            //MessagingCenter.Send(this, "AddRecords", viewModel.IngredientCounts);
             await Navigation.PopAsync();
         }
     }
