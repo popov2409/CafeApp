@@ -14,7 +14,7 @@
                     <!--<RowDefinition Height="Auto"/>-->
             </Grid.RowDefinitions>
 
-            <Picker Grid.Row="0" x:Name="ModePicker" FontSize="18" SelectedIndexChanged="SelectedMode_Change">
+            <Picker Grid.Row="0" x:Name="ModePicker" FontSize="20" SelectedIndexChanged="SelectedMode_Change">
                     <Picker.Items>
                         <x:String>Автоматы</x:String>
                         <x:String>Ингредиенты</x:String>
@@ -45,7 +45,7 @@
                                     <Image Source="right" Grid.Column="1" Margin="10" Opacity="0.6" VerticalOptions="Center"></Image>
                                     <BoxView Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="1" BackgroundColor="Gray" Opacity="0.2" HorizontalOptions="FillAndExpand" VerticalOptions="End" Margin="5,0,5,0"/>
                                     <Grid.GestureRecognizers>
-                                        <!--<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnAvtomatSelected"></TapGestureRecognizer>-->
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnAvtomatSelected"></TapGestureRecognizer>
                                     </Grid.GestureRecognizers>
                                 </Grid>
 

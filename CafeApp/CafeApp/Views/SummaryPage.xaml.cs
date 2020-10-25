@@ -59,5 +59,12 @@ namespace CafeApp.Views
                 }
             }
         }
+
+        private async void OnAvtomatSelected(object sender, EventArgs e)
+        {
+            var layout = (BindableObject)sender;
+            var avtomat = (Avtomat)layout.BindingContext;
+            await Navigation.PushAsync(new IngredientReportPage(avtomat));
+        }
     }
 }

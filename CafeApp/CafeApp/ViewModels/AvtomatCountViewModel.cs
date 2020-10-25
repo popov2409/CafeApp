@@ -27,6 +27,7 @@ namespace CafeApp.ViewModels
                 var rec = ReportAvtomatCountList.FirstOrDefault(c => c.Id == record);
                 ReportAvtomatCountList.Remove(rec);
                 await RecordStore.DeleteItemAsync(record);
+                MessagingCenter.Unsubscribe<AvtomatCountPage, string>(this, "DelRecord");
             });
         }
 
