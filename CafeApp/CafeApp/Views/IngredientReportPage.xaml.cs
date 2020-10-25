@@ -29,5 +29,13 @@ namespace CafeApp.Views
             MessagingCenter.Send(this, "DelIngRecord", rec.Id);
             await Navigation.PopAsync();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (viewModel.IngredientReportList.Count == 0)
+                viewModel.IsBusy = true;
+        }
     }
 }
