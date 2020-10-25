@@ -13,12 +13,21 @@
                 <views:AvtomatsPage />
             </x:Arguments>
         </NavigationPage>
-        
-        <NavigationPage Title="Ингредиенты">
+
+        <NavigationPage Title="Итого">
+            <x:Arguments>
+                <views:SummaryPage />
+            </x:Arguments>
+        </NavigationPage>
+
+
+        <!--<NavigationPage Title="Итого(инг)">
             <x:Arguments>
                 <views:IngredientsPage />
             </x:Arguments>
-        </NavigationPage>
+        </NavigationPage>-->
+       
+        
     </TabbedPage.Children>
     
 </TabbedPage>

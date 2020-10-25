@@ -17,13 +17,16 @@ namespace CafeApp.ViewModels
         public ObservableCollection<IngredientCount> IngredientCounts { get; set; }
         public ObservableCollection<IngredientCount> ReportIngredientCounts { get; set; }
 
+        private ObservableCollection<Avtomat> _repAvtomats;
+        public ObservableCollection<Avtomat> ReportAvtomats { get; set; }
+
         private Avtomat _avtomat;
 
         public Command CreateListCommand { get; set; }
 
         public Command AddDataCommand { get; set; }
 
-        public Command CreateIngredientListCommand { get; set; }
+        public Command CreateReportListCommand { get; set; }
 
         /// <summary>
         /// Контсруктор для создания списка ингредиентов при добавлении записи о внесении в автомат
@@ -36,28 +39,6 @@ namespace CafeApp.ViewModels
             this._avtomat = avtomat;
             CreateListCommand =new Command(async ()=>await ExecuteCreateCommand());
             AddDataCommand=new Command(async ()=>await ExecuteAddDataCommand());
-            //MessagingCenter.Subscribe<AddRecordsPage, ObservableCollection<IngredientCount>>(this, "AddRecords", async (obj, records) =>
-            //{
-            //    string userId = Preferences.Get("user_id", "default_value");
-            //    foreach (IngredientCount ingredientCount in records)
-            //    {
-            //        if(ingredientCount.Count==0) continue;
-            //        Record rec=new Record()
-            //        {
-            //            Count = ingredientCount.Count,
-            //            Date = DateTime.Now.ToShortDateString(),
-            //            Id = Guid.NewGuid().ToString(),
-            //            Ingredient = ingredientCount.Ingredient.Id,
-            //            Avtomat = avtomat.Id,
-            //            IsSend = false,
-            //            IsBlock = false,
-            //            User = userId
-            //        };
-            //        await RecordStore.AddItemAsync(rec);
-            //    }
-
-            //    MessagingCenter.Unsubscribe<AddRecordsPage, ObservableCollection<IngredientCount>>(this, "AddRecords");
-            //});
         }
         
         async Task ExecuteAddDataCommand()
@@ -117,16 +98,20 @@ namespace CafeApp.ViewModels
         {
             Title = "Ингредиенты";
             ReportIngredientCounts = new ObservableCollection<IngredientCount>();
-            CreateIngredientListCommand = new Command(async () => await ExecuteCreateIngredientListCommand());
+            ReportAvtomats = new ObservableCollection<Avtomat>();
+            CreateReportListCommand = new Command(async () => await ExecuteReportListCommand());
+            
         }
 
-        async Task ExecuteCreateIngredientListCommand()
+        async Task ExecuteReportListCommand()
         {
             IsBusy = true;
             try
             {
                 ReportIngredientCounts.Clear();
+                ReportAvtomats.Clear();
                 var ingredients = await IngredientStore.GetItemsAsync(true);
+                var avtomats = await AvtomatStore.GetItemsAsync(true);
                 var records = (await RecordStore.GetItemsAsync(true)).Where(c =>
                     DateTime.Parse(c.Date).DayOfYear == DateTime.Now.DayOfYear &&
                     DateTime.Parse(c.Date).Year == DateTime.Now.Year);
@@ -136,13 +121,21 @@ namespace CafeApp.ViewModels
                     item.Count = records.Where(c => c.Ingredient == ingredient.Id).Sum(c => c.Count);
                     ReportIngredientCounts.Add(item);
                 }
+
+                var avtoEnumerable = (await RecordStore.GetItemsAsync(true)).Where(c =>
+                    DateTime.Parse(c.Date).DayOfYear == DateTime.Now.DayOfYear &&
+                    DateTime.Parse(c.Date).Year == DateTime.Now.Year).Select(c => c.Avtomat).Distinct();
+                foreach (string record in avtoEnumerable)
+                {
+                    ReportAvtomats.Add(avtomats.First(c => c.Id == record));
+                }
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
             }
             finally
-            {
+            { 
                 IsBusy = false;
             }
         }

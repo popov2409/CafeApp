@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CafeApp.Views.SummaryPage" Title="Итого">
+    <ContentPage.Content>
+        <Grid>
+            
+            <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <!--<RowDefinition Height="Auto"/>-->
+            </Grid.RowDefinitions>
+
+            <Picker Grid.Row="0" x:Name="ModePicker" FontSize="18" SelectedIndexChanged="SelectedMode_Change">
+                    <Picker.Items>
+                        <x:String>Автоматы</x:String>
+                        <x:String>Ингредиенты</x:String>
+                    </Picker.Items>
+                </Picker>
+            <RefreshView Grid.Row="1" IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding CreateReportListCommand}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <CollectionView Grid.Row="0" x:Name="AvtomatsCollectionView"
+                                    ItemsSource="{Binding ReportAvtomats}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="40"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Value}" 
+                                           d:Text="{Binding .}"
+                                           LineBreakMode="NoWrap" 
+                                           Style="{DynamicResource ListItemTextStyle}" 
+                                           FontSize="21"
+                                           Margin="5,0,0,0"
+                                           VerticalOptions="Center"/>
+                                    <Image Source="right" Grid.Column="1" Margin="10" Opacity="0.6" VerticalOptions="Center"></Image>
+                                    <BoxView Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="1" BackgroundColor="Gray" Opacity="0.2" HorizontalOptions="FillAndExpand" VerticalOptions="End" Margin="5,0,5,0"/>
+                                    <Grid.GestureRecognizers>
+                                        <!--<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnAvtomatSelected"></TapGestureRecognizer>-->
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <CollectionView Grid.Row="1" x:Name="IngredientsCollectionView"
+                                ItemsSource="{Binding ReportIngredientCounts}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="50"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Ingredient.Value}" 
+                                       d:Text="{Binding .}"
+                                       LineBreakMode="NoWrap" 
+                                       Style="{DynamicResource ListItemTextStyle}" 
+                                       FontSize="21"
+                                       Grid.Column="0"
+                                       VerticalOptions="Center"
+                                       Margin="10,0,0,0"/>
+                                    <Label Text="{Binding Count}" 
+                                       d:Text="{Binding .}"
+                                       LineBreakMode="NoWrap" 
+                                       Style="{DynamicResource ListItemTextStyle}" 
+                                       FontSize="22"
+                                       Grid.Column="1" HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+                                    <BoxView Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="1" BackgroundColor="Gray" Opacity="0.2" HorizontalOptions="FillAndExpand" VerticalOptions="End" Margin="5,0,5,0"/>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"></TapGestureRecognizer>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+                
+            </RefreshView>
+            </Grid>
+            
+    </ContentPage.Content>
+</ContentPage>

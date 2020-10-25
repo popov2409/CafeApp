@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="CafeApp.Views.IngredientsPage"
-             Title="{Binding Title}">
+             Title="">
     <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding CreateIngredientListCommand}">
         <CollectionView x:Name="IngredientsCollectionView"
                         ItemsSource="{Binding ReportIngredientCounts}">
@@ -38,7 +38,6 @@
 
                         </Grid.GestureRecognizers>
                     </Grid>
-
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
